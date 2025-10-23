@@ -219,7 +219,7 @@
         position: static; /* Let it sit normally in the container, not absolutely positioned */
         width: 100%;
         max-width: 100%;
-        height: 80%;
+        height: 70%;
         left: auto;
         /* Add padding at the bottom so the form doesn't cover the last message */
          
