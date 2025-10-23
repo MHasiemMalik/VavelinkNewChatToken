@@ -31,8 +31,15 @@ if (!displayName) {
 // --- Functions ---
 
 const fetchToken = async (uid) => {
+    // --- THIS IS THE FIX ---
+    // Get the server URL from the environment variable set by Vercel/Netlify.
+    // Provide localhost as a fallback for local development.
+    const serverUrl = import.meta.env.VITE_TOKEN_SERVER_URL || 'http://localhost:8080'; 
+
+    console.log("Attempting to connect to token server:", serverUrl); // Add log for debugging
+
     try {
-        const response = await fetch(`http://localhost:8080/get-rtm-token?uid=${uid}`);
+        const response = await fetch(`${serverUrl}/get-rtm-token?uid=${uid}`); // Use the serverUrl variable
         if (!response.ok) throw new Error('Failed to fetch RTM token');
         const data = await response.json();
         return data.token;
